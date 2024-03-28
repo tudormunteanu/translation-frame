@@ -50,7 +50,9 @@ export async function parseFramePayload(payload: any): Promise<FrameContext> {
 const getParentCastText = async (castId: CastId | undefined): Promise<string | undefined> => {
   if (castId) {
     const parentCast = await client?.getCast(castId);
-    return parentCast?.value.data.castAddBody.text;
+    if (parentCast?.isOk()) {
+      return parentCast?.value?.data?.castAddBody?.text;
+    }
   }
   return undefined;
 };
