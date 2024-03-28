@@ -18,7 +18,10 @@ export async function GET(req: Request) {
         display: "flex",
         width: "100%",
         height: "100%",
-        backgroundColor: "f4f4f4",
+        backgroundColor: "#2B2834",
+        backgroundImage: `url(${process.env.HOST}/images/translate-bg-dark.png)`,
+        backgroundSize: "cover",
+        backgroundPosition: "7% 12%",
         padding: 50,
         lineHeight: 1.2,
         fontSize: 24,
@@ -28,17 +31,10 @@ export async function GET(req: Request) {
           flexDirection: "column",
           padding: 20,
           textAlign: "left", 
-          color: "lightgray"
+          color: "#FDF8FF"
         }}>
-          <p> 
-            Defining an MVP is hard and different people have
-            varying opinions on what is and isn&apos;t an MVP.
-          </p>
           <p>
-            Hindsight helps a lot.
-          </p>
-          <p>
-            Try to guess whether the following products were MVP or not.
+            Translate the above cast to one of the languages below.
           </p>
         </div>
       </div>

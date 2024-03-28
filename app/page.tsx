@@ -3,7 +3,6 @@ import {Metadata} from "next";
 import {API_BASE_URL} from "@/app/constants";
 import {getFrameVersion} from "@/app/actions";
 
-
 export async function generateMetadata(): Promise<Metadata> {
 
   const version = await getFrameVersion();
@@ -13,13 +12,18 @@ export async function generateMetadata(): Promise<Metadata> {
     "fc:frame": "vNext",
     "fc:frame:post_url": `${API_BASE_URL}/start`,
     "fc:frame:image": imageUrl,
-    "fc:frame:button:1": "Can you guess them all? Let's a-go, Mario!",
+    "fc:frame:button:1": "🇪🇸",
+    "fc:frame:button:1:type": "action",
+    "fc:frame:button:2": "🇫🇷",
+    "fc:frame:button:2:type": "action",
+    "fc:frame:button:3": "🇩🇪",
+    "fc:frame:button:3:type": "action"
   };
 
   return {
-    title: "MVP or not MVP?",
+    title: "Translator",
     openGraph: {
-      title: "MVP or not MVP?",
+      title: "Translation Frame",
       images: [imageUrl],
     },
     other: {
@@ -30,6 +34,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  return <p>hello</p>;
+  return <p>hola</p>;
 
 }

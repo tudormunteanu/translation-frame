@@ -1,3 +1,5 @@
+"use server";
+
 import sharp from "sharp";
 import satori from "satori";
 import {join} from "path";
@@ -6,10 +8,11 @@ import * as fs from "fs";
 const fontPath = join(process.cwd(), "Roboto-Regular.ttf");
 let fontData = fs.readFileSync(fontPath);
 
-export async function GET(req: Request) {    
+export async function GET(req: Request) {      
   try {
+
     const {searchParams} = new URL(req.url);
-    const score = searchParams.get("score");
+    const res = searchParams.get("res") as string;
 
     const svg = await satori(
       <div style={{
@@ -27,14 +30,11 @@ export async function GET(req: Request) {
           display: "flex",
           flexDirection: "column",
           padding: 20,
-          textAlign: "left",
+          textAlign: "left", 
           color: "lightgray"
         }}>
-          <h2>Done!</h2>
-          <h2>Correct answers: {score}</h2>
-          <p>
-            This game is a basic demo for a tutorial for 
-            Farcaster Frames.
+          <p> 
+            {res}
           </p>
         </div>
       </div>

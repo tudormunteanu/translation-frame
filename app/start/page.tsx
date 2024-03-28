@@ -8,18 +8,21 @@ export async function generateMetadata(
   {searchParams}: MetadataProps,
 ): Promise<Metadata> {
 
+  const {res} = searchParams;
+
   const version = await getFrameVersion();
 
-  const {gameId} = searchParams;
-
-  const imageUrl = `${API_BASE_URL}/images/level?gameId=${gameId}&version=${version}`;
+  const imageUrl = `${API_BASE_URL}/images/result?res=${res}&version=${version}`;
 
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
-    "fc:frame:post_url": `${API_BASE_URL}/next?version=${version}`,
     "fc:frame:image": imageUrl,
-    "fc:frame:button:1": "MVP",
-    "fc:frame:button:2": "Not MVP",
+    "fc:frame:post_url": `${process.env.HOST}/`,
+    "fc:frame:button:1": "🔁",
+    "fc:frame:button:1:action": "post",
+    "fc:frame:button:2": "Follow @tudorizer",
+    "fc:frame:button:2:action": "link",
+    "fc:frame:button:2:target": "https://warpcast.com/tudorizer",
   };
 
   return {
@@ -36,5 +39,5 @@ export async function generateMetadata(
 }
 
 export default async function Page() {
-  return <p>start</p>;
+  return <p>translated</p>;
 }

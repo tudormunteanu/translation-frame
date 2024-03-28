@@ -1,11 +1,12 @@
 "use server";
 
-import {getSSLHubRpcClient, Message} from "@farcaster/hub-nodejs";
+import {CastId, getSSLHubRpcClient, Message} from "@farcaster/hub-nodejs";
 
 const HUB_URL = process.env["HUB_URL"];
 const client = HUB_URL ? getSSLHubRpcClient(HUB_URL) : undefined;
 
 type FrameContext = {
+  parentCastText: string | undefined
   buttonIndex: number;
   fid: number;
 }
@@ -13,6 +14,7 @@ type FrameContext = {
 export async function parseFramePayload(payload: any): Promise<FrameContext> {
 
   let validatedMessage : Message | undefined = undefined;
+  let parentCastText: string | undefined = undefined;  
   try {
     const frameMessage = Message.decode(Buffer.from(payload?.trustedData?.messageBytes || "", "hex"));
     const result = await client?.validateMessage(frameMessage);
@@ -21,14 +23,8 @@ export async function parseFramePayload(payload: any): Promise<FrameContext> {
       validatedMessage = result.value.message;
     }
 
-    console.log("===");
-    const castId = frameMessage?.data?.frameActionBody?.castId
-    if (!castId) {
-      throw new Error(`Invalid frame message: ${frameMessage}`);
-    }
-    const parentCast = await client?.getCast(castId);
-    console.log(parentCast.value.data.castAddBody.text);
-
+    const castId = validatedMessage?.data?.frameActionBody?.castId;
+    parentCastText = await getParentCastText(castId);
 
     let urlBuffer = validatedMessage?.data?.frameActionBody?.url || [];
     const urlString = Buffer.from(urlBuffer).toString("utf-8");
@@ -48,5 +44,13 @@ export async function parseFramePayload(payload: any): Promise<FrameContext> {
     fid = payload?.untrustedData?.fid || 0;
   }
 
-  return {buttonIndex: buttonId, fid: fid};
+  return {buttonIndex: buttonId, fid: fid, parentCastText: parentCastText};
 }
+
+const getParentCastText = async (castId: CastId | undefined): Promise<string | undefined> => {
+  if (castId) {
+    const parentCast = await client?.getCast(castId);
+    return parentCast?.value.data.castAddBody.text;
+  }
+  return undefined;
+};

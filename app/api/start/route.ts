@@ -1,12 +1,25 @@
 import {parseFramePayload} from "@/app/frames";
-import {getOrCreateGame} from "@/app/actions";
+import {translateTo, TargetLanguageCode} from "@/app/actions";
 
 export async function POST(req: Request) {   
   
   try {
-    const {fid} = await parseFramePayload(await req.json());
-    const game = await getOrCreateGame(fid);
-    const startUrl = `/start?gameId=${game.id}`;
+    const {fid, buttonIndex, parentCastText} = await parseFramePayload(await req.json());
+
+    const defaultLang = "es";
+    // TODO: fix the forced typing
+    const buttonIndexToLang = new Map<number, string>([
+      [1, "es"],
+      [2, "fr"],
+      [3, "de"],
+    ]) as Map<number, TargetLanguageCode>;
+
+    const cleanText = parentCastText?.replace(/https?:\/\/\S+/g, "");
+    const targetLang = buttonIndexToLang.get(buttonIndex) || defaultLang;
+
+    const translatedText = await translateTo(cleanText || "", targetLang);
+    const encodedText = encodeURIComponent(translatedText);
+    const startUrl = `/start?res=${encodedText}`;
 
     return new Response(
       "",
