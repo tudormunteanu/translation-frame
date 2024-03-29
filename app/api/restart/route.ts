@@ -3,7 +3,7 @@ export async function POST(req: Request) {
     "",
     {
       status: 302,
-      headers: {"Location": "/start"}
+      headers: {"Location": "/?foo=1"}
     }
   );
 }
