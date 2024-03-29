@@ -1,3 +1,5 @@
+"use server";
+
 import {parseFramePayload} from "@/app/frames";
 import {translateTo, TargetLanguageCode} from "@/app/actions";
 
