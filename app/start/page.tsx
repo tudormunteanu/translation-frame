@@ -14,6 +14,8 @@ export async function generateMetadata(
 
   const imageUrl = `${API_BASE_URL}/images/result?res=${res}&version=${version}`;
 
+  console.log("===", process.env.HOST);
+
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
     "fc:frame:image": imageUrl,
