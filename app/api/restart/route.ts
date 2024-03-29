@@ -1,5 +1,5 @@
 export async function POST(req: Request) {   
-  console.log("POST redirect")
+  console.log("POST redirect");
   return new Response(
     "",
     {
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {   
-  console.log("GET redirect")  
+  console.log("GET redirect");
   return new Response(
     "",
     {

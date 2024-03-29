@@ -19,7 +19,7 @@ export async function generateMetadata(
     "fc:frame:image": imageUrl,
     "fc:frame:post_url": `${API_BASE_URL}/restart`,
     "fc:frame:button:1": "🔁",
-    "fc:frame:button:1:action": "post",
+    "fc:frame:button:1:action": "post_redirect",
     "fc:frame:button:2": "Follow @tudorizer",
     "fc:frame:button:2:action": "link",
     "fc:frame:button:2:target": "https://warpcast.com/tudorizer",
