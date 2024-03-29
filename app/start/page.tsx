@@ -14,14 +14,15 @@ export async function generateMetadata(
 
   const imageUrl = `${API_BASE_URL}/images/result?res=${res}&version=${version}`;
 
-  console.log("===", process.env.HOST);
+  const postUrl = `${API_BASE_URL}/restart`;
+  console.log("===", postUrl);
 
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
     "fc:frame:image": imageUrl,
-    "fc:frame:post_url": process.env.HOST || "",
+    "fc:frame:post_url": postUrl,
     "fc:frame:button:1": "🔁",
-    "fc:frame:button:1:action": "post_redirect",
+    "fc:frame:button:1:action": "post",
     "fc:frame:button:2": "Follow @tudorizer",
     "fc:frame:button:2:action": "link",
     "fc:frame:button:2:target": "https://warpcast.com/tudorizer",
