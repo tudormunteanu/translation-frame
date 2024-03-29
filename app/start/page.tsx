@@ -16,7 +16,7 @@ export async function generateMetadata(
 
   const postUrl = `${API_BASE_URL}/restart`;
   console.log("===", postUrl);
-
+  
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
     "fc:frame:image": imageUrl,

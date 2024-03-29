@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const cleanText = parentCastText?.replace(/https?:\/\/\S+/g, "");
     const targetLang = buttonIndexToLang.get(buttonIndex) || defaultLang;
 
-    const translatedText = await translateTo(cleanText || "", targetLang);
+    const translatedText = await translateTo(cleanText || "empty", targetLang);
     const encodedText = encodeURIComponent(translatedText);
     const startUrl = `/start?res=${encodedText}`;
 
