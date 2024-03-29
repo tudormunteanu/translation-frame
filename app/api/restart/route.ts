@@ -5,7 +5,7 @@ export async function POST(req: Request) {
     "",
     {
       status: 302,
-      headers: {"Location": `${process.env.host}/start`}
+      headers: {"Location": `${process.env.HOST}/start`}
     }
   );
 }
