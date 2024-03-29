@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     const translatedText = await translateTo(cleanText || "empty", targetLang);
     const encodedText = encodeURIComponent(translatedText);
-    const startUrl = `/start?res=${encodedText}`;
+    const startUrl = `/translate?res=${encodedText}`;
 
     return new Response(
       "",

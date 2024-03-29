@@ -2,37 +2,29 @@ import {Metadata} from "next";
 
 import {API_BASE_URL} from "@/app/constants";
 import {getFrameVersion} from "@/app/actions";
-import {MetadataProps} from "@/app/types";
 
-export async function generateMetadata(
-  {searchParams}: MetadataProps,
-): Promise<Metadata> {
-
-  const {res} = searchParams;
+export async function generateMetadata(): Promise<Metadata> {
 
   const version = await getFrameVersion();
+  const imageUrl = `${API_BASE_URL}/images/splash?version=${version}`;
 
-  const imageUrl = `${API_BASE_URL}/images/result?res=${res}&version=${version}`;
-
-  const postUrl = `${API_BASE_URL}/restart`;
-  console.log("===", postUrl);
-  
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
+    "fc:frame:post_url": `${API_BASE_URL}/translate`,
     "fc:frame:image": imageUrl,
-    "fc:frame:post_url": postUrl,
-    "fc:frame:button:1": "🔁",
-    "fc:frame:button:1:action": "post",
-    "fc:frame:button:2": "Follow @tudorizer",
-    "fc:frame:button:2:action": "link",
-    "fc:frame:button:2:target": "https://warpcast.com/tudorizer",
+    "fc:frame:button:1": "🇪🇸",
+    "fc:frame:button:1:type": "action",
+    "fc:frame:button:2": "🇫🇷",
+    "fc:frame:button:2:type": "action",
+    "fc:frame:button:3": "🇩🇪",
+    "fc:frame:button:3:type": "action"
   };
 
   return {
-    title: "Translate",
+    title: "Translator",
     openGraph: {
-      title: "Translate",
-      images: ["/api/splash"],
+      title: "Translation Frame",
+      images: [imageUrl],
     },
     other: {
       ...fcMetadata,
@@ -42,5 +34,6 @@ export async function generateMetadata(
 }
 
 export default async function Page() {
-  return <p>translated</p>;
+  return <p>hola</p>;
+
 }
