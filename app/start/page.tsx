@@ -26,9 +26,9 @@ export async function generateMetadata(
   };
 
   return {
-    title: "MVP or not MVP?",
+    title: "Translate",
     openGraph: {
-      title: "MVP or not MVP?",
+      title: "Translate",
       images: ["/api/splash"],
     },
     other: {
