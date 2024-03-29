@@ -6,7 +6,7 @@ import {translateTo, TargetLanguageCode} from "@/app/actions";
 export async function POST(req: Request) {   
   
   try {
-    const {fid, buttonIndex, parentCastText} = await parseFramePayload(await req.json());
+    const {buttonIndex, parentCastText} = await parseFramePayload(await req.json());
 
     const defaultLang = "es";
     // TODO: fix the forced typing
@@ -21,15 +21,15 @@ export async function POST(req: Request) {
 
     const translatedText = await translateTo(cleanText || "empty", targetLang);
     const encodedText = encodeURIComponent(translatedText);
-    const startUrl = `/translate?res=${encodedText}`;
+    const redirectUrl = `/translate?res=${encodedText}`;
 
     return new Response(
       "",
       {
         status: 302,
-        headers: {"Location": startUrl}
+        headers: {"Location": redirectUrl}
       }
-    );        
+    );
   } catch (e) {
     return new Response(
       `Failed validate action: ${e}`,

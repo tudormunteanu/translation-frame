@@ -1,11 +1,12 @@
 "use server";
 
-export async function POST(req: Request) {   
+export async function POST(req: Request) {
+  const redirectUrl = "/start";
   return new Response(
     "",
     {
-      status: 308,
-      headers: {"Location": `${process.env.HOST}/start`}
+      status: 302,
+      headers: {"Location": redirectUrl}
     }
   );
 }
