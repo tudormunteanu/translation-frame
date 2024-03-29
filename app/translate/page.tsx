@@ -18,11 +18,11 @@ export async function generateMetadata(
     "fc:frame": "vNext",
     "fc:frame:post_url": `${API_BASE_URL}/re`,
     "fc:frame:image": imageUrl,
-    "fc:frame:button:1": "Restart",
-    "fc:frame:button:1:action": "post",
-    "fc:frame:button:2": "Follow @tudorizer",
-    "fc:frame:button:2:action": "link",
-    "fc:frame:button:2:target": "https://warpcast.com/tudorizer",
+    // "fc:frame:button:1": "Restart",
+    // "fc:frame:button:1:action": "post",
+    "fc:frame:button:1": "Follow @tudorizer",
+    "fc:frame:button:1:action": "link",
+    "fc:frame:button:1:target": "https://warpcast.com/tudorizer",
   };
 
   return {
