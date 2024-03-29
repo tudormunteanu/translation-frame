@@ -8,5 +8,3 @@ Dev notes
 My solution was to replace Ngrok with [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-local-tunnel/), which seems to handle headers better.
 
 Your mileage may vary, especially depending on browser.
-
-..
