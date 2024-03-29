@@ -13,13 +13,11 @@ export async function generateMetadata(
   const version = await getFrameVersion();
 
   const imageUrl = `${API_BASE_URL}/images/result?res=${res}&version=${version}`;
-
-  const postUrl = `${API_BASE_URL}/restart`;
   
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
+    "fc:frame:post_url": `${API_BASE_URL}/restart`,
     "fc:frame:image": imageUrl,
-    "fc:frame:post_url": postUrl,
     "fc:frame:button:1": "🔁",
     "fc:frame:button:1:action": "post",
     "fc:frame:button:2": "Follow @tudorizer",
