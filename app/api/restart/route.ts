@@ -4,7 +4,7 @@ export async function POST(req: Request) {
   return new Response(
     "",
     {
-      status: 302,
+      status: 308,
       headers: {"Location": `${process.env.HOST}/start`}
     }
   );
