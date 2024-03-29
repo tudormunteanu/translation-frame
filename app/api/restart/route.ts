@@ -4,7 +4,7 @@ export async function POST(req: Request) {
     "",
     {
       status: 302,
-      headers: {"Location": "/"}
+      headers: {"Location": "/start"}
     }
   );
 }
