@@ -17,7 +17,7 @@ export async function generateMetadata(
   const fcMetadata: Record<string, string> = {
     "fc:frame": "vNext",
     "fc:frame:image": imageUrl,
-    "fc:frame:post_url": `${process.env.HOST}/`,
+    "fc:frame:post_url": process.env.HOST,
     "fc:frame:button:1": "🔁",
     "fc:frame:button:1:action": "post",
     "fc:frame:button:2": "Follow @tudorizer",
